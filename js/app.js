@@ -12,6 +12,12 @@ function cargarEventListeners() {
     
     carrito.addEventListener('click', eliminarHuevo)
 
+    document.addEventListener('DOMContentLoaded', () => {
+        articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || []
+        
+        carritoHTML()
+    })
+
     
     vaciarCarritoBtn.addEventListener('click', () => {
         articulosCarrito = [] 
@@ -101,8 +107,13 @@ function carritoHTML() {
         
         contenedorCarrito.appendChild(row)
     })
+    
+    sincronizarStorage()
 }
 
+function sincronizarStorage() {
+    localStorage.setItem('carrito', JSON.stringify(articulosCarrito))
+}
 
 function limpiarHTML() {
     
